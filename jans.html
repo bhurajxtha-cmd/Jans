@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jan's Restaurant | Buena Vista, Colorado</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#faf7f2;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(0,0,0,0.6);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+    }
+
+    .logo{
+      color:#fff;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+    }
+
+    .nav-links a{
+      color:#fff;
+      font-weight:500;
+      transition:.3s;
+    }
+
+    .nav-links a:hover{
+      color:#ffb347;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+      url('https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero-content{
+      max-width:850px;
+      color:#fff;
+      animation:fadeUp 1s ease;
+    }
+
+    .hero h1{
+      font-size:70px;
+      margin-bottom:20px;
+      line-height:1.1;
+    }
+
+    .hero p{
+      font-size:20px;
+      margin-bottom:35px;
+      color:#f3f3f3;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 35px;
+      background:#ffb347;
+      color:#111;
+      border-radius:50px;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+      background:#fff;
+    }
+
+    /* SECTION */
+
+    section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:42px;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#666;
+    }
+
+    /* ABOUT */
+
+    .about{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:50px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .about-text h3{
+      font-size:32px;
+      margin-bottom:20px;
+    }
+
+    .about-text p{
+      line-height:1.8;
+      color:#555;
+      margin-bottom:20px;
+    }
+
+    /* FEATURES */
+
+    .features{
+      background:#fff;
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .feature-card{
+      background:#faf7f2;
+      padding:35px;
+      border-radius:20px;
+      transition:.3s;
+      text-align:center;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .feature-card h3{
+      margin:20px 0 15px;
+    }
+
+    /* MENU */
+
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .menu-card{
+      background:#fff;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      transition:.3s;
+    }
+
+    .menu-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .menu-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .menu-content{
+      padding:25px;
+    }
+
+    .menu-content h3{
+      margin-bottom:10px;
+    }
+
+    .price{
+      color:#ff8c00;
+      font-weight:700;
+      margin-top:15px;
+      display:block;
+    }
+
+    /* CTA */
+
+    .cta{
+      background:
+      linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
+      url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      color:#fff;
+      text-align:center;
+      border-radius:30px;
+      margin:0 8% 100px;
+      padding:80px 30px;
+    }
+
+    .cta h2{
+      font-size:48px;
+      margin-bottom:20px;
+    }
+
+    .cta p{
+      max-width:700px;
+      margin:auto;
+      margin-bottom:35px;
+      line-height:1.7;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#111;
+      color:#fff;
+      padding:60px 8%;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:40px;
+    }
+
+    footer h3{
+      margin-bottom:20px;
+      color:#ffb347;
+    }
+
+    footer p{
+      color:#ccc;
+      line-height:1.8;
+    }
+
+    .copyright{
+      text-align:center;
+      margin-top:50px;
+      color:#777;
+      border-top:1px solid #333;
+      padding-top:25px;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:45px;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .section-title h2{
+        font-size:34px;
+      }
+
+      .cta h2{
+        font-size:34px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="logo">JAN'S</div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#features">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+      <h1>Comfort Food Done Right Since 1991</h1>
+
+      <p>
+        Serving Buena Vista with homemade breakfast,
+        western flavor, friendly faces, and unforgettable meals.
+      </p>
+
+      <a href="#menu" class="btn">Explore Menu</a>
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-title">
+      <h2>Welcome to Jan's</h2>
+      <p>Where locals eat and visitors return.</p>
+    </div>
+
+    <div class="about">
+
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop" alt="Restaurant">
+
+      <div class="about-text">
+
+        <h3>The Flavor of the West</h3>
+
+        <p>
+          Located in the heart of Buena Vista, Colorado,
+          Jan’s Restaurant has been serving homemade comfort food
+          since 1991.
+        </p>
+
+        <p>
+          From hearty breakfasts to classic American favorites,
+          every meal is made with care and served with a smile.
+        </p>
+
+        <p>
+          Enjoy free arcade games, mini golf, and a warm family atmosphere
+          that keeps people coming back year after year.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="features" id="features">
+
+    <div class="section-title">
+      <h2>Why People Love Jan's</h2>
+      <p>More than a restaurant — it’s an experience.</p>
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <h3>🍳 Homemade Breakfast</h3>
+        <p>
+          Freshly prepared breakfast favorites served every morning from 7AM.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🎮 Free Arcade Games</h3>
+        <p>
+          Fun for kids and adults while enjoying great comfort food.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>⛳ Free Mini Golf</h3>
+        <p>
+          Relax, play, and enjoy a memorable stop in Buena Vista.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>❤️ Friendly Staff</h3>
+        <p>
+          Many of our team members have been with us for over 15 years.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MENU -->
+
+  <section id="menu">
+
+    <div class="section-title">
+      <h2>Popular Dishes</h2>
+      <p>Fresh, hearty, and made with love.</p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1974&auto=format&fit=crop" alt="Breakfast">
+
+        <div class="menu-content">
+          <h3>Country Breakfast</h3>
+
+          <p>
+            Eggs, bacon, hash browns, toast, and western-style flavor.
+          </p>
+
+          <span class="price">$12.99</span>
+        </div>
+
+      </div>
+
+      <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop" alt="Burger">
+
+        <div class="menu-content">
+          <h3>Classic Western Burger</h3>
+
+          <p>
+            Juicy grilled burger served with fries and homemade sauce.
+          </p>
+
+          <span class="price">$14.99</span>
+        </div>
+
+      </div>
+
+      <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1974&auto=format&fit=crop" alt="Pie">
+
+        <div class="menu-content">
+          <h3>Homemade Pie</h3>
+
+          <p>
+            Fresh baked pies made daily with classic family recipes.
+          </p>
+
+          <span class="price">$6.99</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <div class="cta">
+
+    <h2>Stop Your Lookin’ For Great Home Cookin’</h2>
+
+    <p>
+      Visit Jan’s Restaurant in Buena Vista and experience
+      authentic comfort food, friendly faces, and western hospitality.
+    </p>
+
+    <a href="#contact" class="btn">Visit Us Today</a>
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <footer id="contact">
+
+    <div class="footer-grid">
+
+      <div>
+        <h3>Location</h3>
+
+        <p>
+          Jan’s Restaurant<br>
+          301 HWY 24<br>
+          Buena Vista, CO 81211
+        </p>
+      </div>
+
+      <div>
+        <h3>Hours</h3>
+
+        <p>
+          Open Daily<br>
+          7:00 AM – 2:00 PM
+        </p>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+
+        <p>
+          Phone: (719) 395-6940<br>
+          Email: debcole210@hotmail.com
+        </p>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 Jan’s Restaurant — Designed with modern western hospitality.
+    </div>
+
+  </footer>
+
+</body>
+</html>
